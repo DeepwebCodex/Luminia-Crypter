@@ -1,0 +1,8 @@
+I] FUD 0/42
+
+1°) Dé-compressez l'archive "Crypto.rar" dans le dossier "Crypto"
+2°) Installer Crypto Obfuscator For .Net v2013 Build 130121.exe NE COCHEZ PAS "RUN" A LA FIN DE L INSTALLATION
+3°) Après l'installation, remplacez l'executable de C:\Program Files\LogicNP Software\Crypto Obfuscator For .Net 2013 par celui disponible dans le dossier 'crack'
+4°) Lancez-le puis cliquez sur "Assemblies" puis "Add Assemblies"
+5°) Séléctionnez votre fichier puis cocher les mêmes options que sur l'image dans le dossier "Crypto"
+

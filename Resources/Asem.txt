@@ -1,0 +1,7 @@
+<Assembly: AssemblyTitle("%Title%")> 
+<Assembly: AssemblyDescription("%Description%")> 
+<Assembly: AssemblyCompany("%Company%")> 
+<Assembly: AssemblyProduct("%Product%")> 
+<Assembly: AssemblyCopyright("%Copyright%")> 
+<Assembly: AssemblyTrademark("%Trademark%")> 
+<Assembly: AssemblyFileVersion("%FileVersion%")> 
